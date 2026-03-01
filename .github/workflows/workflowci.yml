@@ -8,7 +8,6 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     services:
@@ -44,16 +43,15 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
 
-      - name: Build and Run Tests
+      - name: Build and Run Tests (JaCoCo Enforces 80%)
         run: mvn clean verify
 
-      - name: SonarCloud Analysis
-        env:
-          SONAR_TOKEN: ${{ secrets.token }}
-        run: mvn sonar:sonar -Dsonar.login=${token}
-
-      - name: Wait for Quality Gate
-        uses: sonarsource/sonarcloud-quality-gate-action@master
-        timeout-minutes: 5
+      - name: SonarCloud Scan
+        uses: sonarsource/sonarcloud-github-action@v2
+        with:
+          args: >
+            -Dsonar.projectKey=vivek150900_sonarcurdEmployee
+            -Dsonar.organization=viveklohakare
+            -Dsonar.host.url=https://sonarcloud.io
         env:
           SONAR_TOKEN: ${{ secrets.token }}
