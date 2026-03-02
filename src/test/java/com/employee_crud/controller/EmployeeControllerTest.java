@@ -37,7 +37,7 @@ class EmployeeControllerTest {
                     .department("IT")
                     .build();
 
-    // ✅ Create API Test
+    // Create API Test
     @Test
     void testCreateEmployee() throws Exception {
         Mockito.when(service.createEmployee(Mockito.any(Employee.class)))
@@ -50,7 +50,7 @@ class EmployeeControllerTest {
                 .andExpect(jsonPath("$.name").value("Vivek"));
     }
 
-    // ✅ Get All API Test
+    // Get All API Test
     @Test
     void testGetAllEmployees() throws Exception {
         Mockito.when(service.getAllEmployees())
@@ -61,7 +61,7 @@ class EmployeeControllerTest {
                 .andExpect(jsonPath("$.size()").value(1));
     }
 
-    // ✅ Get By ID API Test
+    // Get By ID API Test
     @Test
     void testGetEmployeeById() throws Exception {
         Mockito.when(service.getEmployeeById(1L))
@@ -72,7 +72,7 @@ class EmployeeControllerTest {
                 .andExpect(jsonPath("$.email").value("vivek@gmail.com"));
     }
 
-    // ✅ Update API Test
+    // Update API Test
     @Test
     void testUpdateEmployee() throws Exception {
         Mockito.when(service.updateEmployee(Mockito.eq(1L),
@@ -86,7 +86,7 @@ class EmployeeControllerTest {
                 .andExpect(jsonPath("$.department").value("IT"));
     }
 
-    // ✅ Delete API Test
+    // Delete API Test
     @Test
     void testDeleteEmployee() throws Exception {
 
