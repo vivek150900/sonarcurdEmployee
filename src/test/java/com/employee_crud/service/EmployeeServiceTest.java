@@ -37,7 +37,7 @@ class EmployeeServiceTest {
                 .build();
     }
 
-    // ✅ Create Employee
+    // Create Employee
     @Test
     void testCreateEmployee() {
         when(repository.save(employee)).thenReturn(employee);
@@ -48,7 +48,7 @@ class EmployeeServiceTest {
         assertEquals("Vivek", saved.getName());
     }
 
-    // ✅ Get All Employees
+    // Get All Employees
     @Test
     void testGetAllEmployees() {
         when(repository.findAll()).thenReturn(List.of(employee));
@@ -58,7 +58,7 @@ class EmployeeServiceTest {
         assertEquals(1, list.size());
     }
 
-    // ✅ Get Employee By ID - Success
+    // Get Employee By ID - Success
     @Test
     void testGetEmployeeById_Success() {
         when(repository.findById(1L)).thenReturn(Optional.of(employee));
@@ -68,7 +68,7 @@ class EmployeeServiceTest {
         assertEquals("Vivek", result.getName());
     }
 
-    // ❌ Get Employee By ID - Not Found
+    // Get Employee By ID - Not Found
     @Test
     void testGetEmployeeById_NotFound() {
         when(repository.findById(1L)).thenReturn(Optional.empty());
@@ -77,7 +77,7 @@ class EmployeeServiceTest {
                 () -> service.getEmployeeById(1L));
     }
 
-    // ✅ Update Employee
+    // Update Employee
     @Test
     void testUpdateEmployee() {
         when(repository.findById(1L)).thenReturn(Optional.of(employee));
@@ -88,7 +88,7 @@ class EmployeeServiceTest {
         assertEquals("Vivek", updated.getName());
     }
 
-    // ✅ Delete Employee
+    // Delete Employee
     @Test
     void testDeleteEmployee() {
         doNothing().when(repository).deleteById(1L);
